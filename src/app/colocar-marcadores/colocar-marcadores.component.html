@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div id="mapa" style="width: 100%; height: 375px;"></div>
+
+
+    <div class="col-12">
+      <br><br>
+      <span>
+        <h2>Inserción Marcador</h2>
+      </span>
+      <div id="ingresoDatos" *ngIf="!isMarcadorGuardadoBD; else MostrarEliminar" class="container">
+        <br>
+        <h6> Presione dos veces en el mapa para insertar un marcador e ingrese
+          la distancia máxima (en métros) del radio que permitirá alejarse el ganado.
+        </h6>
+        <div class="form-group">
+          <input class="form-control" type="number" [(ngModel)]="distancia" placeholder="Distancia máxima permitida">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" [disabled]="!distancia || !isMarcadorColocadoMapa"
+            (click)="crearMarcador()">Aceptar</button>
+        </div>
+      </div>
+
+      <ng-template #MostrarEliminar>
+        <div class="container">
+          <br>
+          <h6>Presione el botón para eliminar el marcador actual e insertar uno nuevo</h6>
+          <div class="form-group">
+            <button class="btn btn-danger" (click)="eliminarMarcador()">Eliminar</button>
+          </div>
+          <div class="form-group">
+            <span><b>Distancia</b> </span>
+            <input class="form-control border border-primary" type="number" [(ngModel)]="distancia"
+              placeholder="Distancia máxima permitida">
+          </div>
+          <br>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
